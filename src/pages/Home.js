@@ -1,3 +1,6 @@
+import BlockListItem from "../components/BlockListItem";
+import TransferListItem from "../components/TransferListItem";
+
 export default function Home() {
   return (
     <div class="page-inner">
@@ -52,27 +55,35 @@ export default function Home() {
                   <span class="oi oi-grid-two-up mr-1"></span> Blocks
                 </h3>
                 <div class="list-group mb-3">
-                  <div class="list-group-header">Block # 123456</div>
-                  <span class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                    <span>Includes 2 Extrinsic 1 Event</span>
-                    <span>
-                      2hrs 12mins ago
-                      <span class="badge badge-danger badge-pill">14</span>
-                    </span>
-                  </span>
-                  <div class="list-group-header">List header</div>
-                  <span class="list-group-item  d-flex justify-content-between align-items-center">
-                    List item with badge
-                    <span class="badge badge-danger badge-pill">14</span>
-                  </span>
-                  <div class="list-group-header">List header</div>
-                  <span class="list-group-item  d-flex justify-content-between align-items-center">
-                    List item with badge
-                    <span class="badge badge-danger badge-pill">14</span>
-                  </span>
+                  <BlockListItem />
+                  <BlockListItem />
+                  <BlockListItem />
+                  <BlockListItem />
+                  <BlockListItem />
                 </div>
               </div>
             </div>
+          </div>
+          <div class="col-12 col-lg-6 col-xl-6">
+            <div class="card card-fluid">
+              <div class="card-body">
+                <h3 class="card-title mb-4">
+                  <span class="oi oi-transfer mr-1"></span> Transfers
+                </h3>
+                <div class="list-group mb-3">
+                  <TransferListItem />
+                  <TransferListItem />
+                  <TransferListItem />
+                  <TransferListItem />
+                  <TransferListItem />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-deck-xl">
+          <div class="card card-fluid">
+            <div class="card-header">Active Projects</div>
           </div>
         </div>
       </div>
