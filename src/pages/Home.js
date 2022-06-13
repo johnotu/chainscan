@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import ArchiveInfo from "../sections/Home/ArchiveInfo";
 import BlocksShortList from "../sections/Home/BlocksShortList";
 import EventsShortList from "../sections/Home/EventsShortList";
