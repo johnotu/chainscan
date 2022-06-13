@@ -29,7 +29,11 @@ export default function useGetArchiveData({ query, initialState }) {
       }
     };
     getData();
-    return () => (isMounted = false);
+    const timer = setInterval(getData, 10000);
+    return () => {
+      clearInterval(timer);
+      isMounted = false;
+    };
   }, [query, url]);
   return { isLoading, data };
 }
