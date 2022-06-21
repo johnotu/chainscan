@@ -1,0 +1,23 @@
+{
+  "DEFAULT_ARCHIVE": {
+    "network": "polkadot",
+    "providers": [
+      {
+        "provider": "subsquid",
+        "url": "https://polkadot.indexer.gc.subsquid.io/v4/graphql",
+        "version": "5.0.0-alpha.32",
+        "image": "hydra-indexer",
+        "gateway": "hydra-indexer-gateway"
+      },
+      {
+        "provider": "fatcat",
+        "url": "https://polkadot.subsquid.fatcat.ventures/v1/graphql",
+        "version": "5.0.0-alpha.31",
+        "image": "hydra-indexer",
+        "gateway": "hydra-indexer-gateway"
+      }
+    ],
+    "genesisHash": "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"
+  },
+  "SUBSQUID_ARCHIVE_REGISTRY": "https://raw.githubusercontent.com/subsquid/archive-registry/main/archives.json"
+}

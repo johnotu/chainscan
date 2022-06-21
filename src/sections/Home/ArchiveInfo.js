@@ -1,46 +1,45 @@
+import { useContext } from "react";
+import Loader from "../../components/Loader";
+import Metric from "../../components/Metric";
+import MetricsContainer from "../../components/MetricsContainer";
+import useGetArchiveData from "../../libs/use-get-archive-data";
+import { ArchiveContext } from "../../store/contexts";
+
 export default function ArchiveInfo() {
-  return (
-    <div className="section-block">
-      <div className="metric-row">
-        <div className="col-lg-12">
-          <div className="metric-row metric-flush">
-            <div className="col">
-              <span className="metric metric-bordered align-items-center">
-                <h2 className="metric-label">Network</h2>
-                <p className="metric-value h3">
-                  <span className="value">Polkadot</span>
-                </p>
-              </span>
-            </div>
-            <div className="col">
-              <span className="metric metric-bordered align-items-center">
-                <h2 className="metric-label">Version</h2>
-                <p className="metric-value h3">
-                  <span className="value">8</span>
-                </p>
-              </span>
-            </div>
-            <div className="col">
-              <span className="metric metric-bordered align-items-center">
-                <h2 className="metric-label">Chain height</h2>
-                <p className="metric-value h3">
-                  <span className="value">8</span>
-                </p>
-              </span>
-            </div>
-            <div className="col">
-              <span className="metric metric-bordered align-items-center">
-                <div className="metric-badge">
-                  <span className="badge badge-lg badge-success">
-                    <span className="oi oi-media-record pulse mr-1"></span>{" "}
-                    SYNCHRONISED
-                  </span>
-                </div>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const { archive } = useContext(ArchiveContext);
+
+  const { isLoading, data } = useGetArchiveData({
+    query: `{
+      indexerStatus {
+        chainHeight
+        hydraVersion
+        inSync
+      }
+    }`,
+  });
+
+  if (isLoading || !data) {
+    return (
+      <MetricsContainer>
+        <span className="metric metric-bordered align-items-center">
+          <Loader />
+        </span>
+      </MetricsContainer>
+    );
+  } else {
+    const { chainHeight, hydraVersion, inSync } = data.indexerStatus;
+
+    return (
+      <MetricsContainer>
+        <Metric label="Network" value={archive.network} />
+        <Metric label="Version" value={hydraVersion} />
+        <Metric label="Chain height" value={chainHeight} />
+        {inSync ? (
+          <Metric isBadge value="SYNCHRONISED" badgeStatus="success" />
+        ) : (
+          <Metric isBadge value="NOT SYNCHRONISED" badgeStatus="warning" />
+        )}
+      </MetricsContainer>
+    );
+  }
 }

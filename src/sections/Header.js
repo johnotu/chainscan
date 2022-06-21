@@ -1,11 +1,16 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ArchiveContext } from "../store/contexts";
 
 export default function Header({
-  isChainListCollapsed,
-  toggleisChainListCollapsed,
+  isArchiveListCollapsed,
+  toggleIsArchiveListCollapsed,
   toggleIsMobileMenuCollapsed,
+  setIsMobileMenuCollapsed,
   isMobileMenuCollapsed,
+  archives,
 }) {
+  const { archive, setArchive } = useContext(ArchiveContext);
   return (
     <header className="app-header app-header-dark">
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-lg-0">
@@ -31,7 +36,7 @@ export default function Header({
 
           <div
             className={`collapse navbar-collapse ${
-              isMobileMenuCollapsed ? "show" : ""
+              isMobileMenuCollapsed ? "" : "show"
             }`}
             id="navbarTogglerDemo01"
           >
@@ -60,33 +65,40 @@ export default function Header({
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                onClick={toggleisChainListCollapsed}
+                onClick={toggleIsArchiveListCollapsed}
               >
-                {/* <span className="user-avatar user-avatar-md mr-lg-0">
-                  <img src="assets/images/avatars/profile.jpg" alt="" />
-                </span> */}
                 <span className="account-summary">
-                  <span className="account-name">Polkadot</span>
-                  {/* <span className="account-description">Marketing Manager</span> */}
+                  <span className="account-name text-capitalize">
+                    {archive.network}{" "}
+                    <span
+                      className={`oi oi-chevron-${
+                        isArchiveListCollapsed ? "bottom" : "top"
+                      } ml-2`}
+                    ></span>
+                  </span>
                 </span>
               </button>
 
               <div
                 className={`dropdown-menu dropdown-menu-right ${
-                  isChainListCollapsed ? "show" : ""
+                  isArchiveListCollapsed ? "" : "show"
                 }`}
               >
                 <div className="dropdown-arrow mr-3"></div>
-                {/* <h6 className="dropdown-header d-none d-lg-block d-lg-none">
-                  Polkadot
-                </h6> */}
-                <span className="dropdown-item" href="user-profile.html">
-                  <span className="dropdown-icon oi oi-person"></span> Kusama
-                </span>
-                <span className="dropdown-item" href="auth-signin-v1.html">
-                  <span className="dropdown-icon oi oi-account-logout"></span>{" "}
-                  Moonbeam
-                </span>
+                {archives.map((a) => (
+                  <span
+                    className="dropdown-item"
+                    key={a.genesisHash}
+                    onClick={() => {
+                      setArchive(a);
+                      toggleIsArchiveListCollapsed();
+                      setIsMobileMenuCollapsed(true);
+                    }}
+                  >
+                    <span className="dropdown-icon oi oi-globe"></span>{" "}
+                    <span className="text-capitalize">{a.network}</span>
+                  </span>
+                ))}
                 <div className="dropdown-divider"></div>
                 <span className="dropdown-item">Development</span>
               </div>
