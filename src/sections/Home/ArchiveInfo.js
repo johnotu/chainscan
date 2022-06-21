@@ -18,7 +18,7 @@ export default function ArchiveInfo() {
     }`,
   });
 
-  if (isLoading) {
+  if (isLoading || !data) {
     return (
       <MetricsContainer>
         <span className="metric metric-bordered align-items-center">
