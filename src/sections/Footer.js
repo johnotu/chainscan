@@ -1,30 +1,22 @@
 export default function Footer() {
   return (
     <footer className="app-footer">
-      <ul className="list-inline">
-        <li className="list-inline-item">
-          <a className="text-muted" href="/">
-            Support
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a className="text-muted" href="/">
-            Help Center
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a className="text-muted" href="/">
-            Privacy
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a className="text-muted" href="/">
-            Terms of Service
-          </a>
-        </li>
-      </ul>
-      <div className="copyright">
-        Copyright &copy; 2022. All right reserved.
+      <div>
+        Powered by{" "}
+        <a className="text-muted" href="https://subsquid.io/">
+          Subsquid
+        </a>
+        ,{" "}
+        <a className="text-muted" href="https://reactjs.org/">
+          React
+        </a>{" "}
+        and{" "}
+        <a className="text-muted" href="https://getbootstrap.com/">
+          Bootstrap
+        </a>
+      </div>
+      <div>
+        Made with <span className="oi oi-heart"></span> in Lagos, Nigeria.
       </div>
     </footer>
   );
