@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ArchiveContext } from "../store/contexts";
 
 export default function Header({
@@ -42,19 +42,19 @@ export default function Header({
           >
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="/block">
-                  Blocks <span className="sr-only">(current)</span>
-                </Link>
+                <NavLink className="nav-link" to="/block">
+                  Blocks
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/event">
+                <NavLink className="nav-link" to="/event">
                   Events
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/transfer">
+                <NavLink className="nav-link" to="/transfer">
                   Transfers
-                </Link>
+                </NavLink>
               </li>
             </ul>
 
