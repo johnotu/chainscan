@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import RelativeTime from "../components/RelativeTime";
 import Search from "../components/Search";
@@ -59,8 +60,10 @@ export default function Blocks() {
                         validatorId,
                       }) => (
                         <tr key={id}>
-                          <td className="text-indigo text-nowrap">{height}</td>
-                          <td className="text-indigo">
+                          <td className="text-indigo text-nowrap">
+                            <Link to={`/block/${height}`}>{height}</Link>
+                          </td>
+                          <td className="">
                             <RelativeTime timestamp={parseInt(timestamp)} />
                           </td>
                           <td className="">{extrinsics.length}</td>
@@ -69,7 +72,9 @@ export default function Blocks() {
                             <ShortHex hex={validatorId} />
                           </td>
                           <td className="text-indigo">
-                            <ShortHex hex={hash} />
+                            <Link to={`/block/${hash}`}>
+                              <ShortHex hex={hash} />
+                            </Link>
                           </td>
                         </tr>
                       )
