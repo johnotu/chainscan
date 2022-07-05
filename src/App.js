@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Account from "./pages/Account";
 import Base from "./pages/Base";
 import Block from "./pages/Block";
 import Blocks from "./pages/Blocks";
@@ -17,6 +18,7 @@ function App() {
           <Route path=":id" element={<Block />} />
         </Route>
         <Route path="/transaction" element={<Transactions />} />
+        <Route path="/account/:id" element={<Account />} />
       </Route>
     </Routes>
   );
