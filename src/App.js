@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Base from "./pages/Base";
+import Block from "./pages/Block";
 import Blocks from "./pages/Blocks";
 import Events from "./pages/Events";
 import Home from "./pages/Home";
@@ -10,7 +11,10 @@ function App() {
       <Route path="/" element={<Base />}>
         <Route index element={<Home />} />
         <Route path="/event" element={<Events />} />
-        <Route path="/block" element={<Blocks />} />
+        <Route path="/block">
+          <Route index element={<Blocks />} />
+          <Route path=":id" element={<Block />} />
+        </Route>
       </Route>
     </Routes>
   );
