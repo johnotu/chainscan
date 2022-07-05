@@ -1,14 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Search() {
-  const [searchParam, setSearchParam] = useState("Height");
-  const changeSearchParam = (e) => setSearchParam(e.target.value);
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const changeSearchTerm = (e) => setSearchTerm(e.target.value);
 
   const submitSearch = (e) => {
     e.preventDefault();
-    console.log(searchTerm);
+    navigate(`/block/${searchTerm}`);
   };
 
   return (
@@ -17,16 +17,6 @@ export default function Search() {
         <div className="card-body">
           <form onSubmit={submitSearch}>
             <div className="input-group input-group-alt">
-              <div className="input-group-prepend">
-                <select
-                  className="custom-select"
-                  value={searchParam}
-                  onChange={changeSearchParam}
-                >
-                  <option value="Height">Block Height </option>
-                  <option value="Hash">Block Hash </option>
-                </select>
-              </div>
               <div className="input-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text">
@@ -34,9 +24,9 @@ export default function Search() {
                   </span>
                 </div>
                 <input
-                  type={searchParam === "Height" ? "number" : "text"}
+                  type="text"
                   className="form-control"
-                  placeholder={`Search by Block ${searchParam}`}
+                  placeholder="Search by block height or hash"
                   onChange={changeSearchTerm}
                 />
               </div>

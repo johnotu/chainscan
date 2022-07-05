@@ -64,6 +64,16 @@ export default function Block() {
         </div>
       </div>
     );
+  } else if (data.substrate_block.length <= 0) {
+    return (
+      <div className="section-block">
+        <div className="card" style={{ height: "800px" }}>
+          <div className="d-flex align-items-center justify-content-center h-100">
+            <h5>Sorry! Nothing to see here</h5>
+          </div>
+        </div>
+      </div>
+    );
   } else {
     const {
       height,
