@@ -14,7 +14,14 @@
   },
   {
     "section": "balances",
-    "methods": ["Withdraw", "Transfer", "Reserved", "Unreserved", "Endowed"]
+    "methods": [
+      "Withdraw",
+      "Transfer",
+      "Reserved",
+      "Unreserved",
+      "Endowed",
+      "Deposit"
+    ]
   },
   {
     "section": "ethereum",

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import RelativeTime from "../components/RelativeTime";
 import ShortHex from "../components/ShortHex";
+import TransactionValue from "../components/TransactionValue";
 import useGetArchiveData from "../libs/use-get-archive-data";
 
 export default function Block() {
@@ -86,9 +87,10 @@ export default function Block() {
       substrate_extrinsics,
       substrate_events,
     } = data.substrate_block[0];
-    const transfers = substrate_events.filter(
-      (e) => e.section === "balances" && e.method === "Transfer"
+    const transactions = substrate_events.filter(
+      (e) => e.section === "balances"
     );
+
     return (
       <div className="page-inner">
         <div className="container">
@@ -170,7 +172,7 @@ export default function Block() {
                       onClick={() => setOpenTab("transfers")}
                       style={{ cursor: "pointer" }}
                     >
-                      Transfers ({transfers.length})
+                      Transactions ({transactions.length})
                     </span>
                   </li>
                 </ul>
@@ -278,15 +280,14 @@ export default function Block() {
                           <tr>
                             <th className="text-nowrap">Event ID</th>
                             <th className="text-nowrap">Extrinsic ID</th>
-                            <th>From</th>
-                            <th>To</th>
+
                             <th>Value</th>
                             <th>Signer</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {transfers.map(
+                          {transactions.map(
                             ({
                               indexInBlock,
                               extrinsicIndex,
@@ -303,13 +304,10 @@ export default function Block() {
                                 <td className="text-indigo text-nowrap">
                                   {height}-{extrinsicIndex}
                                 </td>
-                                <td>
-                                  <ShortHex hex={data.param0.value} />
+
+                                <td className="font-weight-bolder">
+                                  <TransactionValue transaction={data} />
                                 </td>
-                                <td>
-                                  <ShortHex hex={data.param1.value} />
-                                </td>
-                                <td>{data.param2.value}</td>
                                 <td className="text-indigo">
                                   <Link to={`/account/${extrinsic.signer}`}>
                                     <ShortHex hex={extrinsic.signer} />

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import eventTypes from "../data/event-types.json";
 
-export default function Filter({ params, setSearchParams }) {
+export default function Filter({ params, setSearchParams, isTransactions }) {
   const [section, setSection] = useState(params.section);
   const [method, setMethod] = useState(params.method);
   const [prevParams, setPrevParams] = useState(null);
@@ -27,19 +27,23 @@ export default function Filter({ params, setSearchParams }) {
                 <label htmlFor="module" className="mr-3 font-weight-bold">
                   Module
                 </label>
-                <select
-                  className="custom-select"
-                  id="module"
-                  value={section}
-                  onChange={(e) => setSection(e.target.value)}
-                >
-                  <option value="">all</option>
-                  {eventTypes.map((type) => (
-                    <option value={type.selection} key={type.section}>
-                      {type.section}
-                    </option>
-                  ))}
-                </select>
+                {isTransactions ? (
+                  <span>balances</span>
+                ) : (
+                  <select
+                    className="custom-select"
+                    id="module"
+                    value={section}
+                    onChange={(e) => setSection(e.target.value)}
+                  >
+                    <option value="">all</option>
+                    {eventTypes.map((type) => (
+                      <option value={type.selection} key={type.section}>
+                        {type.section}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
               <div className="form-inline col-md-4 mb-3 mt-3">
                 <label htmlFor="event" className="mr-3 font-weight-bolder">
