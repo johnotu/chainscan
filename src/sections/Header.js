@@ -52,8 +52,8 @@ export default function Header({
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/transfer">
-                  Transfers
+                <NavLink className="nav-link" to="/transaction">
+                  Transactions
                 </NavLink>
               </li>
             </ul>

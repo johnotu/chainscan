@@ -4,6 +4,7 @@ import Block from "./pages/Block";
 import Blocks from "./pages/Blocks";
 import Events from "./pages/Events";
 import Home from "./pages/Home";
+import Transactions from "./pages/Transactions";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Blocks />} />
           <Route path=":id" element={<Block />} />
         </Route>
+        <Route path="/transaction" element={<Transactions />} />
       </Route>
     </Routes>
   );
