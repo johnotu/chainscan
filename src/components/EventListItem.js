@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import RelativeTime from "./RelativeTime";
 
 export default function EventListItem({
@@ -13,7 +14,9 @@ export default function EventListItem({
       <td className="text-indigo text-nowrap">
         {blockNumber}-{indexInBlock}
       </td>
-      <td className="text-indigo">{blockNumber}</td>
+      <td className="text-indigo">
+        <Link to={`/block/${blockNumber}`}>{blockNumber}</Link>
+      </td>
       <td className="text-nowrap">
         {blockNumber}-{extrinsicIndex}
       </td>
