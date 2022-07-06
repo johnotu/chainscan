@@ -20,7 +20,7 @@ export default function TransfersShortList() {
     return (
       <div className="col-12 col-lg-6 col-xl-6">
         <div className="card card-fluid">
-          <div className="card-body home-section overflow-auto">
+          <div className="card-body">
             <div className="list-group mb-3 home-section overflow-auto">
               <div className="d-flex align-items-center justify-content-center h-100">
                 <Loader />
