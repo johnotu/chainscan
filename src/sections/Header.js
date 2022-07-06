@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { ArchiveContext } from "../store/contexts";
 
 export default function Header({
@@ -11,13 +11,24 @@ export default function Header({
   archives,
 }) {
   const { archive, setArchive } = useContext(ArchiveContext);
+  const [localArchiveAddress, setLocalArchiveAddress] = useState("");
+
+  const handleSubmitLocalArchive = (e) => {
+    e.preventDefault();
+    setArchive({
+      network: "Local archive",
+      providers: [{ provider: "subsquid", url: localArchiveAddress }],
+    });
+    toggleIsArchiveListCollapsed();
+    setIsMobileMenuCollapsed(true);
+  };
   return (
     <header className="app-header app-header-dark">
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-lg-0">
         <div className="container">
-          <a className="navbar-brand" href="index.html">
+          <Link className="navbar-brand" to="/">
             <h4>Chainscan</h4>
-          </a>
+          </Link>
 
           <button
             className="hamburger hamburger-squeeze d-flex d-lg-none"
@@ -83,6 +94,7 @@ export default function Header({
                 className={`dropdown-menu dropdown-menu-right ${
                   isArchiveListCollapsed ? "" : "show"
                 }`}
+                style={{ overflow: "scroll", height: "600px" }}
               >
                 <div className="dropdown-arrow mr-3"></div>
                 {archives.map((a) => (
@@ -101,6 +113,19 @@ export default function Header({
                 ))}
                 <div className="dropdown-divider"></div>
                 <span className="dropdown-item">Development</span>
+                <span className="dropdown-item">
+                  <form onSubmit={handleSubmitLocalArchive}>
+                    <input
+                      type="text"
+                      className="form-control mb-3"
+                      placeholder="Locally running archive"
+                      onChange={(e) => setLocalArchiveAddress(e.target.value)}
+                    />
+                    <button type="submit" className="btn btn-dark">
+                      Submit
+                    </button>
+                  </form>
+                </span>
               </div>
             </div>
           </div>
