@@ -39,8 +39,8 @@ export default function TransfersShortList() {
               <h3 className="card-title mb-4">
                 <span className="oi oi-transfer mr-1"></span> Transfers
               </h3>
-              <Link to="/transfer" className="btn btn-dark btn-sm">
-                All
+              <Link to="/transaction" className="btn btn-dark btn-sm">
+                All Transactions
               </Link>
             </span>
             <div className="list-group mb-3 home-section overflow-auto">

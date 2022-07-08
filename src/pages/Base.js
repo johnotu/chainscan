@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import config from "../config";
 import Footer from "../sections/Footer";
 import Header from "../sections/Header";
+import ArchiveInfo from "../sections/Home/ArchiveInfo";
 import { ArchiveContext } from "../store/contexts";
 
 const { SUBSQUID_ARCHIVE_REGISTRY, DEFAULT_ARCHIVE } = config;
@@ -54,6 +55,7 @@ export default function Base() {
         <main className="app-main">
           <div className="wrapper">
             <div className="page">
+              <ArchiveInfo />
               <Outlet />
             </div>
           </div>
